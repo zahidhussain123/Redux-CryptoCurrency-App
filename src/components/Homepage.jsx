@@ -5,6 +5,7 @@ import millify from "millify";
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import Cryptocurrencies from "./Cryptocurrencies";
 import News from "./News";
+import Loader from "./Loader";
 
 const { Title } = Typography;
 
@@ -14,7 +15,7 @@ const Homepage = () => {
 
   console.log("coin dataa", data);
 
-  if (isFetching) return "Loading...";
+  if (isFetching) return <Loader />;
 
   return (
     <>

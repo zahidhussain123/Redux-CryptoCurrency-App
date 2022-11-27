@@ -1,9 +1,19 @@
 import React from "react";
-import { Chart, registerables } from "chart.js";
+// import { Chart, registerables } from "chart.js";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import { Line } from "react-chartjs-2";
 import { Row, Col, Typography } from "antd";
 
-const { Title } = Typography;
+// const { Title } = Typography;
 const LineChart = ({ coinHistory, currentPrice, coinName }) => {
   const coinPrice = [];
   const coinTimeStamp = [];
@@ -40,21 +50,30 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
       },
     },
   };
-  Chart.register(...registerables);
+  // Chart.register(...registerables);
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+  );
   return (
     <>
       <Row className="chart-header">
-        <Title level={2} className="chart-title">
+        <Typography.Title level={2} className="chart-title">
           {coinName} Price Chart
-        </Title>
+        </Typography.Title>
         <Col className="price-container">
-          <Title level={5} className="price-change">
+          <Typography.Title level={5} className="price-change">
             {coinHistory?.data?.change}%
-          </Title>
+          </Typography.Title>
 
-          <Title level={5} className="current-price">
+          <Typography.Title level={5} className="current-price">
             Current {coinName} Price: ${currentPrice}
-          </Title>
+          </Typography.Title>
         </Col>
       </Row>
       <Line data={data} options={options} />
